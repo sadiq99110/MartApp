@@ -16,13 +16,13 @@ const Splash = ({navigation}) => {
         setTimeout(() => {
             navigation.reset({
                 index: 0,
-                routes: [{name: 'Login'}],
-              });
+                routes: [{name: 'SignIn'}],
+              })
         },3000)
     }, [])
     return(
         <View style={styles.conatiner}>
-                <Image source ={{uri:'https://images.unsplash.com/photo-1584680226833-0d680d0a0794?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80'}} style={styles.image}/>
+                <Image source ={{uri:'https://i.pinimg.com/originals/96/e7/68/96e768cc8dfc14f7955a33550d35bedf.png'}} style={styles.image}/>
         </View>
     )
 }
