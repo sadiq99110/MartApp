@@ -6,16 +6,19 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const SignIn = ({navigation}) => {
         const [email,setEmail] = useState('')
         const [password, setPassword] = useState('')
+        const [loading,setLoading] = useState(false)
 
         useEffect(() => {
             _retrieveData();
         },[])
 
         const login = async ()=>{
+         
             try {
                 const result = await axios.post("https://martmanagementsystembackend.herokuapp.com/api/users/signin",{
                    email: email.trim(),password:password.trim()
                 })
+
                 return result;
                 } catch (error) {
                     console.log(error.message);
@@ -52,7 +55,9 @@ const SignIn = ({navigation}) => {
             
       const handleSubmit = ()=>{
           console.log("xfdsfs")
+          setLoading(true)
           login().then((res)=>{
+              setLoading(false)
             _storeData(res.data)
               navigation.reset({
                 index:0,
@@ -68,7 +73,10 @@ const SignIn = ({navigation}) => {
             // <ScrollView contentContainerStyle={styles.container} keyboardDismissMode='on-drag'>
             // <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : null}>
             <View style={styles.container}>   
-        
+            {
+                loading ?               <ActivityIndicator size="large" color="#00ff00" style={{position:'absolute', top:0, left:0, zIndex:1000,width:'100%', height:'100%'}}/>
+                : <View></View>
+            }
             <Image style={styles.logo} source={{uri:'https://i.pinimg.com/originals/96/e7/68/96e768cc8dfc14f7955a33550d35bedf.png'}}/>
             <TextInput 
                     placeholder='Enter your email'

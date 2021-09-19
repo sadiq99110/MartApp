@@ -3,6 +3,8 @@ import { NavigationContainer } from '@react-navigation/native'
 import axios from 'axios'
 import React, { useState, useEffect } from 'react'
 import { SafeAreaView, View, StyleSheet, ActivityIndicator, FlatList, TouchableOpacity, Text, Image } from 'react-native'
+import { io } from 'socket.io-client'
+const socket = io('https://martmanagementsystembackend.herokuapp.com');
 
 const SuccessScreen2 = ({ navigation }) => {
     const [cartId, setCartId] = useState('');
@@ -28,10 +30,15 @@ const SuccessScreen2 = ({ navigation }) => {
     //     })
 
     // },[])
+        socket.on(cartId,(data)=>{
+           if(data.type = "success"){
+               confirm()
+           }
 
+        })
     useEffect(() => {
         _retrieveData();
-        const socket = io('https://martmanagementsystembackend.herokuapp.com')
+    
 
     }, [])
 
@@ -50,23 +57,32 @@ const SuccessScreen2 = ({ navigation }) => {
     }
     const confirm = () => {
         setSuccess(true);
+      AsyncStorage.removeItem("cartId").then(()=>{
         setTimeout(() => {
             navigation.reset({
                 index: 0,
                 routes: [{ name: 'QRcode' }]
             })
         }, 3000);
+      })
     }
 
 
     return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
             {
-                !success ? <>   <Text>CART ID: {cartId}</Text>
-                <Text style={{ textAlign: 'center', fontSize: 30 }}>show this Id cartId to your vendor</Text> </> : <>
+                success !== true ? 
+                // <> <Text>CART ID: {cartId}</Text>
+                // <Text style={{ textAlign: 'center', fontSize: 30 }}>show this Id cartId to your vendor</Text> </> 
+                <View>
+                    <Text style={{ textAlign: 'center', fontSize: 30 }}>CART ID: {cartId}</Text>
+                    <Text style={{ textAlign: 'center', fontSize: 30 }}>show this Id cartId to your vendor</Text> 
+                </View>
+                : 
+                <View>
                 <Image source={{ uri: 'https://www.shareicon.net/data/256x256/2016/08/20/817720_check_395x512.png' }} style={styles.image} />
                 <Text style={{ textAlign: 'center', fontSize: 30 }}>Payment is done!</Text>
-                </>
+                </View>
             }
           
           

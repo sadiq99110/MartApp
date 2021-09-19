@@ -235,8 +235,8 @@ const Home = ({navigation}) => {
             </TouchableOpacity>        
             <RBSheet
         ref={refRBSheet}
-        closeOnDragDown={true}
-        closeOnPressMask={false}
+        closeOnDragDown={false}
+        closeOnPressMask={true}
         customStyles={{
           wrapper: {
             backgroundColor: "transparent",
