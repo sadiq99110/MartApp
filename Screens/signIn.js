@@ -39,7 +39,10 @@ const SignIn = ({navigation}) => {
                 const value = await AsyncStorage.getItem('user');
                 if(value !== null){
                     console.log("value ==========>",value);;
-                    navigation.navigate('QRcode')
+                    navigation.reset({
+                        index:0,
+                        routes:[{name:'QRcode'}]
+                    })
                 }
             } catch (error) {
                  console.log(error.message)   

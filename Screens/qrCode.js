@@ -66,10 +66,15 @@ const QRcode = ({navigation}) => {
            
            console.log("dsfdsfffffffffffffffffffffffffffffffffffffffffffffff",result.data);
            if(result.data.message !== "Already Activated"){
-           _storeData(cartId)  
+          await  _storeData(cartId)  
+           navigation.navigate('Home');
 
-        }
-        navigation.navigate('Home');
+
+          }
+          else{
+            Alert.alert("Cart is busy")
+          }
+        
         } catch (error) {
             console.log(error.message)
         }

@@ -7,6 +7,7 @@
  */
 
 import React from 'react';
+import { StatusBar } from 'react-native';
 import StackScreen from './Route/stackScreen';
 import Home from './Screens/home';
 import SignIn from './Screens/signIn';
@@ -15,6 +16,7 @@ import SignIn from './Screens/signIn';
 
 const App = () => {
 
+  StatusBar.setHidden(true, 'none');
   return (
     <StackScreen />
   );

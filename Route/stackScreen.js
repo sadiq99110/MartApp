@@ -10,6 +10,7 @@ import QRcode from '../Screens/qrCode';
 import PaymentMethod from '../Screens/paymentMethod';
 import WebViewScreen from '../Screens/webView';
 import SuccessScreen from '../Screens/suceessScreen';
+import SuccessScreen2 from '../Screens/successScreen2';
 
 const StackScreen = () => {
     const Stack = createNativeStackNavigator();
@@ -25,6 +26,7 @@ const StackScreen = () => {
         <Stack.Screen name="PaymentMethod" component={PaymentMethod} />
         <Stack.Screen name="WebViewScreen" component={WebViewScreen} />
         <Stack.Screen name="SuccessScreen" component={SuccessScreen} />
+        <Stack.Screen name="SuccessScreen2" component={SuccessScreen2} />
       </Stack.Navigator>
     </NavigationContainer>
     )
